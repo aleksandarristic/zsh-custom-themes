@@ -13,16 +13,9 @@
 #   exec zsh
 
 # ---- user@host colors -----------------------------------------------------
-# user: lime green, @: white, host: dark purple locally / bold white on SSH.
-if [[ -n "$SSH_CONNECTION" || -n "$SSH_CLIENT" || -n "$SSH_TTY" ]]; then
-  _leka_user_color="%F{120}"
-  _leka_at_color="%F{7}"
-  _leka_host_color="%B%F{white}"
-else
-  _leka_user_color="%F{120}"
-  _leka_at_color="%F{7}"
-  _leka_host_color="%F{128}"
-fi
+_leka_user_color="%F{120}"
+_leka_at_color="%F{7}"
+_leka_host_color="%F{128}"
 
 # ---- cwd: git-root-relative when in a repo --------------------------------
 # Outside a repo: ~/full/path
