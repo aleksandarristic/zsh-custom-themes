@@ -12,10 +12,18 @@
 #   set ZSH_THEME="leka" in ~/.zshrc
 #   exec zsh
 
+VIRTUAL_ENV_DISABLE_PROMPT=1
+
 # ---- user@host colors -----------------------------------------------------
 _leka_user_color="%F{120}"
 _leka_at_color="%F{7}"
 _leka_host_color="%F{128}"
+
+# ---- virtualenv indicator -------------------------------------------------
+_leka_venv() {
+  [[ -z "$VIRTUAL_ENV" ]] && return
+  print -rn -- "%F{220}(${VIRTUAL_ENV:t})%f "
+}
 
 # ---- cwd: git-root-relative when in a repo --------------------------------
 # Outside a repo: ~/full/path
@@ -89,7 +97,7 @@ _leka_git() {
 # ---- assemble the prompt --------------------------------------------------
 setopt PROMPT_SUBST
 
-PROMPT='┌─ %F{240}%D{%H:%M:%S}%f ${_leka_user_color}%n%f${_leka_at_color}@%f${_leka_host_color}%m%f%b  $(_leka_cwd)$(_leka_git)
+PROMPT='┌─ $(_leka_venv)%F{240}%D{%H:%M:%S}%f ${_leka_user_color}%n%f${_leka_at_color}@%f${_leka_host_color}%m%f%b  $(_leka_cwd)$(_leka_git)
 └─ %(?:%F{green}➜%f :%F{red}➜%f ) '
 
 RPROMPT=''
